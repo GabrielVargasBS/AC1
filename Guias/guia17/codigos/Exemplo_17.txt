@@ -1,0 +1,70 @@
+Exemplo_17.txt
+Autor    : Gabriel Vargas Bento de Souza
+Matricula: 778023
+Data     : 26 / 11 / 2022
+
+--------------------------------------------------------------------------------
+ _____________________________________________________________________________
+|   | t | t | t | |t+1|t+1| | FF | FF | | FF | FF | |  FF  |  FF  | | FF | FF |
+|---|---|---|---| |---|---| |----|----| |----|----| |------|------| |----|----|
+| m | a | b | c | | a | b | | Da | Db | |SaRa|SbRb| | JaKa | JbKb | | Ta | Tb |
+|---|---|---|---| |---|---| |----|----| |----|----| |------|------| |----|----|
+| 0 | 0 | 0 | 0 | | 0 | 0 | |  0 |  0 | | 00 | 00 | |00  00|00  00| |  0 |  0 |
+| 1 | 0 | 0 | 1 | | 0 | 1 | |  0 |  1 | | 00 | 10 | |00  00|11  10| |  0 |  1 |
+| 2 | 0 | 1 | 0 | | 0 | 1 | |  0 |  1 | | 00 | 00 | |00  00|00  00| |  0 |  0 |
+| 3 | 0 | 1 | 1 | | 1 | 1 | |  1 |  1 | | 10 | 00 | |11  10|00  00| |  1 |  0 |
+| 4 | 1 | 0 | 0 | | 1 | 0 | |  1 |  0 | | 00 | 00 | |00  00|00  00| |  0 |  0 |
+| 5 | 1 | 0 | 1 | | 0 | 0 | |  0 |  0 | | 01 | 00 | |11  01|00  00| |  1 |  0 |
+| 6 | 1 | 1 | 0 | | 1 | 1 | |  1 |  1 | | 00 | 00 | |00  00|00  00| |  0 |  0 |
+| 7 | 1 | 1 | 1 | | 1 | 0 | |  1 |  0 | | 00 | 01 | |00  00|11  01| |  0 |  1 |
+|___|___|___|___|_|___|___|_|____|____|_|____|____|_|T___SR|T___SR|_|____|____|
+                                                    
+                                                     // T  - modo Toogle
+                                                     // SR - modo Set Reset
+                                                     
+Equacoes:
+          
+tipo_D:   Da = ac' + b c
+          Db = bc' + a'c
+ 
+tipo_T:  Ta = a'b c + ab'c
+         Tb = a'b'c + ab c
+
+tipo_JK: Ja = a'b c + ab'c    Ka = a'b c + ab'c
+         Jb = a'b'c + ab c    Kb = a b'c'+ ab c
+         
+tipo_SR: Sa = a'b c           Sa = ab'c
+         Sb = a'b'c           Sb = ab c
+         
+
+Turing Machine - 111 (unica vez)
+
+ estado entrada saída movimento próximo  codificação de movimentos
+* 000      0      0    01  (R)    000    00 = N = não fazer nada
+  000      1      0    01  (R)    001    01 = R = para a direita
+  001      0      0    01  (R)    000    
+  001      1      0    01  (R)    010    11 = S = parar
+  010      0      0    01  (R)    000
+  010      1      1    01+ (S)    011
+  
+ 
+Turing Machine - 111 (sem intercessao)
+
+ estado entrada saída movimento próximo  codificação de movimentos
+* 000      0      0    01  (R)    000    00 = N = não fazer nada
+  000      1      0    01  (R)    001    01 = R = para a direita
+  001      0      0    01  (R)    000    10 = L = para a esquerda
+  001      1      0    01  (R)    010    11 = S = parar
+  010      0      0    01  (R)    000
+  010      1      1    01  (R)    000
+  
+  
+Turing Machine - 111 (sem intercessao)
+
+ estado entrada saída movimento próximo  codificação de movimentos
+* 000      0      0    01  (R)    000    00 = N = não fazer nada
+  000      1      0    01  (R)    001    01 = R = para a direita
+  001      0      0    01  (R)    000    10 = L = para a esquerda 
+  001      1      0    01  (R)    010    11 = S = parar
+  010      0      0    01  (R)    000
+  010      1      1    01  (R)    010
