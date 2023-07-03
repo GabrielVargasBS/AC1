@@ -1,0 +1,36 @@
+$date
+	Sun Oct 02 18:13:44 2022
+$end
+$version
+	GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+$end
+$timescale
+	1 s
+$end
+$scope module Exemplo_0901 $end
+$var wire 1 " clk $end
+$upscope $end
+$enddefinitions $end
+$dumpvars
+#0
+0"
+#12
+1"
+#24
+0"
+#36
+1"
+#48
+0"
+#60
+1"
+#72
+0"
+#84
+1"
+#96
+0"
+#108
+1"
+#120
+0"

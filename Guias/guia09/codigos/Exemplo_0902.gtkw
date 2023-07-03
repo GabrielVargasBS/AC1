@@ -1,0 +1,25 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Sun Oct 02 21:35:40 2022
+[*]
+[dumpfile] "C:\Users\Gabriel\Desktop\CC-PUC\2Periodo\ARQ1\Tarefas\Guia09\Exemplo_0902.vcd"
+[dumpfile_mtime] "Sun Oct 02 21:21:46 2022"
+[dumpfile_size] 6689
+[savefile] "C:\Users\Gabriel\Desktop\CC-PUC\2Periodo\ARQ1\Tarefas\Guia09\Exemplo_0902.gtkw"
+[timestart] 384
+[size] 1300 745
+[pos] -1 -1
+*-7.400342 504 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 197
+[signals_width] 78
+[sst_expanded] 1
+[sst_vpaned_height] 193
+@28
+Exemplo_0902.clock
+Exemplo_0902.p
+@29
+Exemplo_0902.p1
+@28
+Exemplo_0902.t1
+[pattern_trace] 1
+[pattern_trace] 0
