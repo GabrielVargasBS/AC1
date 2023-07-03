@@ -1,0 +1,434 @@
+; Projeto_01.txt
+; Autor    : Gabriel Vargas Bento de Souza
+; Matricula: 778023
+; Data     : 04 / 12 / 2022
+
+;-------------------------------------------------------------------------------
+
+; 3) Porta AND
+; This program tests logical operation AND
+
+Main:        load   zero  ; acc<-0
+             AND    zero  ; acc<-acc&mdr
+             write        ; output<-acc
+             
+             load   zero  ; acc<-0
+             AND    one   ; acc<-acc&mdr
+             write        ; output<-acc
+
+             load   one   ; acc<-0
+             AND    zero  ; acc<-acc&mdr
+             write        ; output<-acc
+             
+             load   one   ; acc<-0
+             AND    one   ; acc<-acc&mdr
+             write        ; output<-acc
+             
+             stop         ; stop
+
+zero:        .data 2 0    ; 2-byte location for constant zero
+one:         .data 2 1    ; 2-byte location for constant one
+
+; Results
+
+; Output: 0
+; Output: 0
+; Output: 0
+; Output: 1
+
+;-------------------------------------------------------------------------------
+
+; 3.a) Porta NOT
+; This program tests logical operation NOT
+
+Main:        load   zero  ; acc<-0
+             NOT          ; acc<-!acc
+             write        ; output<-acc
+
+             load   one   ; acc<-0
+             NOT          ; acc<-!acc
+             write        ; output<-acc
+             
+             stop         ; stop
+
+zero:        .data 2 0    ; 2-byte location for constant zero
+one:         .data 2 1    ; 2-byte location for constant one
+
+; Results
+
+; Output: -1
+; Output: -2
+
+;-------------------------------------------------------------------------------
+
+; 3.b) Porta XOR
+; This program tests logical operation XOR
+
+Main:        load   zero  ; acc<-0
+             XOR    zero  ; acc<-acc^mdr
+             write        ; output<-acc
+             
+             load   zero  ; acc<-0
+             XOR    one   ; acc<-acc^mdr
+             write        ; output<-acc
+
+             load   one   ; acc<-0
+             XOR    zero  ; acc<-acc^mdr
+             write        ; output<-acc
+             
+             load   one   ; acc<-0
+             XOR    one   ; acc<-acc^mdr
+             write        ; output<-acc
+             
+             stop         ; stop
+
+zero:        .data 2 0    ; 2-byte location for constant zero
+one:         .data 2 1    ; 2-byte location for constant one
+
+; Results
+
+; Output: 0
+; Output: 1
+; Output: 1
+; Output: 0
+
+;-------------------------------------------------------------------------------
+
+; 3.c) Porta NAND
+; This program tests logical operation NAND
+
+Main:        load   zero  ; acc<-0
+             NAND   zero  ; acc<-!(acc&mdr)
+             write        ; output<-acc
+             
+             load   zero  ; acc<-0
+             NAND   one   ; acc<-!(acc&mdr)
+             write        ; output<-acc
+
+             load   one   ; acc<-0
+             NAND   zero  ; acc<-!(acc&mdr)
+             write        ; output<-acc
+             
+             load   one   ; acc<-0
+             NAND   one   ; acc<-!(acc&mdr)
+             write        ; output<-acc
+             
+             stop         ; stop
+
+zero:        .data 2 0    ; 2-byte location for constant zero
+one:         .data 2 1    ; 2-byte location for constant one
+
+; Results
+
+; Output: -1
+; Output: -1
+; Output: -1
+; Output: -2
+
+;-------------------------------------------------------------------------------
+
+; 3.d) Porta NOR
+; This program tests logical operation with NAND
+
+Main:        load   zero  ; acc = 0
+             NAND   zero  ; acc = nand(0,0)
+             store  tmp   ; tmp = acc
+             load   zero  ; acc = 0
+             NAND   zero  ; acc = nand(0,0)
+             NAND   tmp   ; acc = nand(acc, tmp)
+             store  tmp   ; tmp = acc
+             NAND   tmp   ; acc = nand(acc, tmp)
+             write        ; print(acc)
+             
+             load   zero  ; acc = 0
+             NAND   zero  ; acc = nand(0,0)
+             store  tmp   ; tmp = acc
+             load   one   ; acc = 1
+             NAND   one   ; acc = nand(1,1)
+             NAND   tmp   ; acc = nand(acc, tmp)
+             store  tmp   ; tmp = acc
+             NAND   tmp   ; acc = nand(acc, tmp)
+             write        ; print(acc)
+             
+             load   one   ; acc = 1
+             NAND   one   ; acc = nand(1,1)
+             store  tmp   ; tmp = acc
+             load   zero  ; acc = 0
+             NAND   zero  ; acc = nand(0,0)
+             NAND   tmp   ; acc = nand(acc, tmp)
+             store  tmp   ; tmp = acc
+             NAND   tmp   ; acc = nand(acc, tmp)
+             write        ; print(acc)
+             
+             load   one   ; acc = 1
+             NAND   one   ; acc = nand(1,1)
+             store  tmp   ; tmp = acc
+             load   one   ; acc = 1
+             NAND   one   ; acc = nand(1,1)
+             NAND   tmp   ; acc = nand(acc, tmp)
+             store  tmp   ; tmp = acc
+             NAND   tmp   ; acc = nand(acc, tmp)
+             write        ; print(acc)
+
+             stop         ; stop
+
+zero:        .data 2 0    ; 2-byte location for constant zero
+one:         .data 2 1    ; 2-byte location for constant one
+tmp:         .data 2 0    ; 2-byte location for temp value
+
+; Output: -1
+; Output: -2
+; Output: -2
+; Output: -2
+
+;-------------------------------------------------------------------------------
+
+; 3.d) Fibonacci
+; This program prints the first six Fibonacci's numbers
+
+Read:        read                  ; acc = readInt()
+             store num             ; num = acc
+             isInvalidValue Test   ; if(acc < 2) Test()
+             load zero             ; acc = 0
+             store old_num         ; old_num = acc
+             write                 ; print(acc)
+             load one              ; acc = 1
+             store now_num         ; now_num = acc
+             write                 ; print(acc)
+             load num              ; acc = num
+             subtract one          ; acc = acc - 1
+             subtract one          ; acc = acc - 1
+             store tmp_num         ; tmp_num = acc             
+
+
+Start:       load tmp_num          ; acc = tmp_num
+             isEqualZero Stop      ; if(acc == 0) Stop()
+             load now_num          ; acc = now_num
+             add old_num           ; acc = acc + old_num
+             write                 ; print(acc)
+             store tmp             ; tmp = acc
+             load now_num          ; acc = old_num
+             store old_num         ; old_num = acc
+             load tmp              ; acc = tmp
+             store now_num         ; now_num = acc
+             load tmp_num          ; acc = tmp_num
+             subtract one          ; acc = acc - 1
+             store tmp_num         ; tmp_num = acc
+             jump Start            ; Start()
+             
+Test:        load num              ; acc = num
+             isEqualOne First      ; if(acc == 1) First()
+             jump Stop             ; Stop()
+             
+
+First:       load zero             ; acc = 0
+             write                 ; print(acc)
+             jump Stop             ; break
+
+Stop:        stop                  ; return
+
+zero:        .data 2 0             ; 2-byte location for constant zero
+one:         .data 2 1             ; 2-byte location for constant one
+num:         .data 2 0             ; 2-byte location where read number is stored
+tmp_num:     .data 2 0             ; 2-byte location for actual number
+old_num:     .data 2 0             ; 2-byte location for old Fibonacci number
+now_num:     .data 2 0             ; 2-byte location for now Fibonacci number
+tmp:         .data 2 0             ; 2-byte location for temporary number
+
+; Tests
+
+; Enter a integer: 6
+; Output: 0 
+; Output: 1
+; Output: 1
+; Output: 2
+; Output: 3
+; Output: 5
+
+; Enter a integer: 2
+; Output: 0 
+; Output: 1
+
+; Enter a integer: 10
+; Output: 0 
+; Output: 1
+; Output: 1
+; Output: 2
+; Output: 3
+; Output: 5
+; Output: 8
+; Output: 13
+; Output: 21
+; Output: 34
+
+;-------------------------------------------------------------------------------
+
+; E1) Calculate M.D.C.
+
+Read:        read                  ; acc = readInt()
+             store num1            ; num1 = acc
+             store divisor         ; divisor = acc
+             read                  ; acc = readInt()
+             store num2            ; num2 = acc
+             subtract num1         ; acc = num2 - num1
+             compareTo Swap        ; Swap()
+                      
+Start1:      load divisor          ; acc = divisor
+             isEqualOne NumberOne  ; if(acc == 1) NumberOne()
+             load num1             ; acc = num1
+             divide divisor        ; acc = acc / divisor
+             multiply divisor      ; acc = acc * num1
+             subtract num1         ; acc = acc - num1
+             isEqualZero Resp1     ; if(num1 % divisor != 0) Resp1()
+
+Start2:      load num2             ; acc = num2
+             divide divisor        ; acc = acc / divisor
+             multiply divisor      ; acc = acc * num2
+             subtract num2         ; acc = acc - num2
+             isEqualZero Resp2     ; if(num2 % divisor != 0) Resp2()             
+                          
+Next:        load divisor          ; acc = divisor
+             subtract one          ; acc = acc - 1
+             store divisor         ; divisor = acc
+             jump Start1           ; Start1()
+
+Swap:        load num1             ; acc  = num1
+             store tmp             ; tmp  = acc
+             load num2             ; acc  = num2
+             store num1            ; num1 = acc
+             store divisor         ; divisor = acc
+             load tmp              ; acc  = tmp
+             store num2            ; num2 = acc
+             jump Start1           ; Start1()
+
+NumberOne:   load one              ; acc = 1
+             write                 ; print(acc)
+             jump Stop             ; break
+
+Resp1:       load one              ; acc = 1
+             store resp1           ; resp1 = acc
+             jump Start2           ; Start2()
+
+Resp2:       load one              ; acc = 1
+             store resp2           ; resp2 = acc
+             jump Test             ; Test()
+
+Test:        load resp1            ; acc = resp1
+             AND resp2             ; acc = resp1 & resp2
+             store tmp             ; tmp = acc
+             load zero             ; acc = 0
+             store resp1           ; resp1 = 0
+             store resp2           ; resp2 = 0
+             load tmp              ; acc = tmp
+             isEqualOne Result     ; if(acc == 1) Result()
+             jump Next             ; Next() 
+
+Result:      load divisor          ; acc = divisor
+             write                 ; print(acc)
+             jump Stop             ; break  
+                             
+Stop:        stop                  ; return
+
+zero:        .data 2 0             ; 2-byte location for constant zero
+one:         .data 2 1             ; 2-byte location for constant one
+divisor:     .data 2 1             ; 2-byte location for actual divisor
+num1:        .data 2 0             ; 2-byte location for 1st read number
+num2:        .data 2 0             ; 2-byte location for 2nd read number
+resp1:       .data 2 0             ; 2-byte location for 1st resp
+resp2:       .data 2 0             ; 2-byte location for 2nd resp
+tmp:         .data 2 0             ; 2-byte location for temporary value
+
+; Tests
+
+; Enter a integer: 11
+; Enter a integer: 17
+; Output: 1
+
+; Enter a integer: 12
+; Enter a integer:  6
+; Output: 6
+
+; Enter a integer: 99
+; Enter a integer:  6
+; Output: 3
+
+; Enter a integer: 15
+; Enter a integer: 10
+; Output: 5
+
+; Enter a integer: 1
+; Enter a integer: 9
+; Output: 1
+
+;-------------------------------------------------------------------------------
+
+; E2) Test if number is prime
+; This program tests if a number is prime or not
+
+Read:        read                  ; acc = readInt()
+             isEqualOne     True   ; if(acc == 1) True()
+             isInvalidValue False  ; if(acc  < 2) False()
+             store num             ; num = acc
+             subtract one          ; acc = acc - 1
+             store divisor         ; divisor = acc
+             
+
+Start:       load divisor          ; acc = divisor
+             isEqualOne True       ; if(acc == 1) True()
+             load num              ; acc = num
+             divide divisor        ; acc = acc / divisor
+             multiply divisor      ; acc = acc * num
+             subtract num          ; acc = acc - num
+             isEqualZero False     ; if(num % divisor != 0) False() 
+             load divisor          ; acc = divisor
+             subtract one          ; acc = acc - 1
+             store divisor         ; divisor = acc
+             jump Start            ; Start()
+
+False:       load zero             ; acc = 0
+             write                 ; print(acc)
+             jump Stop             ; break  
+
+True:        load one              ; acc = 1
+             write                 ; print(acc)
+             jump Stop             ; break
+
+Stop:        stop                  ; return
+
+zero:        .data 2 0             ; 2-byte location for constant zero
+one:         .data 2 1             ; 2-byte location for constant one
+divisor:     .data 2 1             ; 2-byte location for actual divisor
+num:         .data 2 0             ; 2-byte location where read number is stored
+
+; Tests
+
+; Enter a integer: 0
+; Output: 0
+
+; Enter a integer: 1
+; Output: 1
+
+; Enter a integer: 2
+; Output: 1
+
+; Enter a integer: 3
+; Output: 1
+
+; Enter a integer: 5
+; Output: 1
+
+; Enter a integer: 11
+; Output: 1
+
+; Enter a integer: 25
+; Output: 0
+
+; Enter a integer: 12
+; Output: 0
+
+; Enter a integer: 9
+; Output: 0
+
+;-------------------------------------------------------------------------------
+
+
